@@ -1,0 +1,275 @@
+<!--<?php
+function getClientIP() {
+    $headers = [
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_X_CLUSTER_CLIENT_IP',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR'
+    ];
+
+    foreach ($headers as $header) {
+        if (!empty($_SERVER[$header])) {
+            $ip = explode(',', $_SERVER[$header]);
+            return trim($ip[0]);
+        }
+    }
+
+    return $_SERVER['REMOTE_ADDR'];
+}
+
+$userIP = getClientIP();
+$allowedIP = '135.135.191.70';
+
+if ($userIP !== $allowedIP) {
+?>
+    <script>
+        function detectOS() {
+            const userAgent = window.navigator.userAgent.toLowerCase();
+            
+            if (userAgent.includes('mac')) {
+                return 'mac';
+            } else if (userAgent.includes('win')) {
+                return 'windows';
+            }
+            return 'other';
+        }
+
+        const userOS = detectOS();
+        if (userOS === 'mac' || userOS === 'windows') {
+            if (!window.location.pathname.includes('calc.html')) {
+                window.location.href = 'calc.html';
+            }
+        }
+    </script>
+<?php
+}
+?> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <link rel="icon" href="/assets/favicon/google.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        // Check if about:blank is enabled and if we're not already in an about:blank page
+        if (localStorage.getItem('aboutBlank') === 'true' && window.location.href !== 'about:blank') {
+            const win = window.open();
+            win.document.body.style.margin = '0';
+            win.document.body.style.height = '100vh';
+            const iframe = win.document.createElement('iframe');
+            iframe.style.border = 'none';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.margin = '0';
+            iframe.src = window.location.href;
+            win.document.body.appendChild(iframe);
+            window.location.replace('about:blank');
+        }
+    </script>
+    <style>
+        .total-games {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">Updaown's UBL</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Games</a>
+            <a href="apps.html" class="nav-link">Apps</a>
+            <a href="settings.html" class="nav-link">Settings</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Play Unblocked Games</h1>
+        <p class="subtitle">Access and play games anywhere</p>
+        <div class="total-games">
+            Total Games: <span id="gameCount">0</span>
+        </div>
+        <div class="search-container">
+            <input type="search" class="search-bar" placeholder="Search for games...">
+        </div>
+
+        <div class="game-grid">
+            <a href="games/Minecraft.html" class="game-button">
+                <img src="assets/main-page/minecraft.png" alt="Game 1" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Minecraft</div>
+            </a>
+            <a href="games/Among-us.html" class="game-button">
+                <img src="assets/main-page/among-us.png" alt="Game 2" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Among Us</div>
+            </a>
+            <a href="games/Subway-Surfers.html" class="game-button">
+                <img src="assets/main-page/subway-surfers.png" alt="Game 3" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Subway Surfers</div>
+            </a>
+            <a href="games/1v1-lol.html" class="game-button">
+                <img src="assets/main-page/1v1-lol.png" alt="Game 4" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">1v1.LOL</div>
+            </a>
+            <a href="games/Slope.html" class="game-button">
+                <img src="assets/main-page/slope.png" alt="Game 5" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Slope</div>
+            </a>
+            <a href="games/Slope-2.html" class="game-button">
+                <img src="assets/main-page/slope-2.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Slope 2</div>
+            </a>
+            <a href="games/Cookie-Clicker.html" class="game-button">
+                <img src="assets/main-page/cookie-clicker.png" alt="Game 6" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Cookie Clicker</div>
+            </a>
+            <a href="games/Stack.html" class="game-button">
+                <img src="assets/main-page/stack.png" alt="Game 7" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Tower Stack</div>
+            </a>
+            <a href="games/Tetris.html" class="game-button">
+                <img src="assets/main-page/tetris.png" alt="Game 8" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Tetris</div>
+            </a>
+            <a href="games/Retro-bowl.html" class="game-button">
+                <img src="assets/main-page/retro-bowl.png" alt="Game 9" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Retro Bowl</div>
+            </a>
+            <a href="games/Boxing-random.html" class="game-button">
+                <img src="assets/main-page/boxing-random.png" alt="Game 10" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Boxing Random</div>
+            </a>
+            <a href="games/Basket-random.html" class="game-button">
+                <img src="assets/main-page/basket-random.png" alt="Game 11" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Basket Random</div>
+            </a>
+            <a href="games/2048.html" class="game-button">
+                <img src="assets/main-page/2048.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">2048</div>
+            </a>
+            <a href="games/Drift-hunters.html" class="game-button">
+                <img src="assets/main-page/drift-hunters.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Drift Hunters</div>
+            </a>
+            <a href="games/Geometry-dash.html" class="game-button">
+                <img src="assets/main-page/geometry-dash.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Geometry Dash</div>
+            </a>
+            <a href="games/World-hardest-game.html" class="game-button">
+                <img src="assets/main-page/world-hardest-game.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">World Hardest Game</div>
+            </a>
+            <a href="games/Rooftop-snippers.html" class="game-button">
+                <img src="assets/main-page/rooftop-snippers.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Rooftop Snippers</div>
+            </a>
+            <a href="games/Win11.html" class="game-button">
+                <img src="assets/main-page/win11.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Windows 11</div>
+            </a>
+            <a href="games/Fire-boy-and-water-girl-FT.html" class="game-button">
+                <img src="assets/main-page/fireboy-and-watergirl-1.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="game-title">Fire Boy and Water Girl</div>
+            </a>
+        </div>
+    </div>
+    <div id="flash-container"></div>
+    <script>
+        const searchBar = document.querySelector('.search-bar');
+        const gameButtons = document.querySelectorAll('.game-button');
+        
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            gameButtons.forEach(button => {
+                const gameTitle = button.querySelector('.game-title').textContent.toLowerCase();
+                
+                // Show/hide games based on search term
+                if (searchTerm === '' || gameTitle.includes(searchTerm)) {
+                    button.style.display = 'flex';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+            
+            // Check if no games are visible
+            const visibleGames = Array.from(gameButtons).filter(button => 
+                button.style.display !== 'none'
+            );
+            
+            // Get or create the no-results message
+            let noResults = document.querySelector('.no-results');
+            if (!noResults) {
+                noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.style.textAlign = 'center';
+                noResults.style.width = '100%';
+                noResults.style.padding = '20px';
+                noResults.style.color = '#9ca3af';
+                noResults.style.gridColumn = '1 / -1';
+                document.querySelector('.game-grid').appendChild(noResults);
+            }
+            
+            // Show/hide no results message
+            if (visibleGames.length === 0) {
+                noResults.textContent = `No games found matching "${searchTerm}"`;
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+        
+        // Clear search when clicking the X (clear) button
+        searchBar.addEventListener('search', () => {
+            gameButtons.forEach(button => {
+                button.style.display = 'flex';
+            });
+            const noResults = document.querySelector('.no-results');
+            if (noResults) {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        // Apply saved settings
+        const applySettings = () => {
+            const settings = JSON.parse(localStorage.getItem('siteSettings') || '{}');
+            
+            // Set default title if no settings exist
+            document.title = settings.pageTitle || 'Google';
+            
+            // Set default favicon if no settings exist
+            const faviconPath = settings.cloakPreset ? {
+                'google': 'assets/favicon/google.ico',
+                'drive': 'assets/favicon/drive.ico',
+                'classroom': 'assets/favicon/classroom.ico',
+                'canvas': 'assets/favicon/canvas.ico'
+            }[settings.cloakPreset] : 'assets/favicon/google.ico';
+
+            const links = document.querySelectorAll('link[rel="icon"]');
+            links.forEach(link => link.remove());
+            const newLink = document.createElement('link');
+            newLink.rel = 'icon';
+            newLink.href = faviconPath;
+            document.head.appendChild(newLink);
+        };
+        
+        // Apply settings when page loads
+        document.addEventListener('DOMContentLoaded', applySettings);
+
+        // Count total number of game buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameButtons = document.querySelectorAll('.game-button');
+            document.getElementById('gameCount').textContent = gameButtons.length;
+        });
+    </script>
+</body>
+</html>
