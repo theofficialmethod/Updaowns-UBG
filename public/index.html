@@ -102,92 +102,7 @@ if ($userIP !== $allowedIP) {
             <input type="search" class="search-bar" placeholder="Search for games...">
         </div>
 
-        <div class="game-grid">
-            <a href="games/Minecraft.html" class="game-button">
-                <img src="assets/main-page/minecraft.png" alt="Game 1" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Minecraft</div>
-            </a>
-            <a href="games/Among-us.html" class="game-button">
-                <img src="assets/main-page/among-us.png" alt="Game 2" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Among Us</div>
-            </a>
-            <a href="games/Subway-Surfers.html" class="game-button">
-                <img src="assets/main-page/subway-surfers.png" alt="Game 3" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Subway Surfers</div>
-            </a>
-            <a href="games/1v1-lol.html" class="game-button">
-                <img src="assets/main-page/1v1-lol.png" alt="Game 4" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">1v1.LOL</div>
-            </a>
-            <a href="games/Slope.html" class="game-button">
-                <img src="assets/main-page/slope.png" alt="Game 5" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Slope</div>
-            </a>
-            <a href="games/Slope-2.html" class="game-button">
-                <img src="assets/main-page/slope-2.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Slope 2</div>
-            </a>
-            <a href="games/Cookie-Clicker.html" class="game-button">
-                <img src="assets/main-page/cookie-clicker.png" alt="Game 6" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Cookie Clicker</div>
-            </a>
-            <a href="games/Stack.html" class="game-button">
-                <img src="assets/main-page/stack.png" alt="Game 7" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Tower Stack</div>
-            </a>
-            <a href="games/Tetris.html" class="game-button">
-                <img src="assets/main-page/tetris.png" alt="Game 8" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Tetris</div>
-            </a>
-            <a href="games/Retro-bowl.html" class="game-button">
-                <img src="assets/main-page/retro-bowl.png" alt="Game 9" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Retro Bowl</div>
-            </a>
-            <a href="games/Boxing-random.html" class="game-button">
-                <img src="assets/main-page/boxing-random.png" alt="Game 10" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Boxing Random</div>
-            </a>
-            <a href="games/Basket-random.html" class="game-button">
-                <img src="assets/main-page/basket-random.png" alt="Game 11" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Basket Random</div>
-            </a>
-            <a href="games/2048.html" class="game-button">
-                <img src="assets/main-page/2048.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">2048</div>
-            </a>
-            <a href="games/Drift-hunters.html" class="game-button">
-                <img src="assets/main-page/drift-hunters.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Drift Hunters</div>
-            </a>
-            <a href="games/Geometry-dash.html" class="game-button">
-                <img src="assets/main-page/geometry-dash.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Geometry Dash</div>
-            </a>
-            <a href="games/World-hardest-game.html" class="game-button">
-                <img src="assets/main-page/world-hardest-game.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">World Hardest Game</div>
-            </a>
-            <a href="games/Rooftop-snippers.html" class="game-button">
-                <img src="assets/main-page/rooftop-snippers.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Rooftop Snippers</div>
-            </a>
-            <a href="games/Win11.html" class="game-button">
-                <img src="assets/main-page/win11.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Windows 11</div>
-            </a>
-            <a href="games/Fire-boy-and-water-girl-FT.html" class="game-button">
-                <img src="assets/main-page/fireboy-and-watergirl-1.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Fire Boy and Water Girl</div>
-            </a>
-            <a href="games/chrome-dino.html" class="game-button">
-                <img src="assets/main-page/chrome-dino.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Chrome Dino</div>
-            </a>
-            <a href="games/Fappy-bird.html" class="game-button">
-                <img src="assets/main-page/fappy-bird.png" alt="Game 12" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="game-title">Fappy Bird</div>
-            </a>
-        </div>
+        <div id="game-grid" class="game-grid"></div>
     </div>
     <div id="flash-container"></div>
     <script>
@@ -278,6 +193,32 @@ if ($userIP !== $allowedIP) {
             const gameButtons = document.querySelectorAll('.game-button');
             document.getElementById('gameCount').textContent = gameButtons.length;
         });
+
+        // games loading buttons
+        fetch('games.json') // Replace with the path to your JSON file
+  .then(response => response.json())
+  .then(data => {
+    const gameGrid = document.querySelector('.game-grid');
+    data.games.forEach(game => {
+      const gameButton = document.createElement('a');
+      gameButton.href = game.link;
+      gameButton.className = 'game-button';
+
+      const img = document.createElement('img');
+      img.src = game.image;
+      img.alt = game.alt;
+      img.style = 'width: 100%; height: 100%; object-fit: cover;';
+
+      const title = document.createElement('div');
+      title.className = 'game-title';
+      title.textContent = game.title;
+
+      gameButton.appendChild(img);
+      gameButton.appendChild(title);
+      gameGrid.appendChild(gameButton);
+    });
+  })
+  .catch(error => console.error('Error loading games:', error));
     </script>
 </body>
 </html>
