@@ -125,6 +125,12 @@
         "image": "assets/main-page/fappy-bird.png",
         "alt": "Game 21",
         "link": "games/Fappy-bird.html"
+      },
+      {
+        "title": "Chroma",
+        "image": "assets/main-page/chroma.png",
+        "alt": "Game 22",
+        "link": "games/Chroma.html"
       }
     ]
   }
