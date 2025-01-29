@@ -131,6 +131,24 @@
         "image": "assets/main-page/chroma.png",
         "alt": "Game 22",
         "link": "games/Chroma.html"
+      },
+      {
+        "title": "Impossible Quiz",
+        "image": "assets/main-page/impossible-quiz.png",
+        "alt": "Game 23",
+        "link": "games/Impossible-quiz.html"
+      },
+      {
+        "title": "Crazy Car Jump",
+        "image": "assets/main-page/crazy-car-jump.png",
+        "alt": "Game 24",
+        "link": "games/Crazy-car-jump.html"
+      },
+      {
+        "title": "Coloron",
+        "image": "assets/main-page/coloron.png",
+        "alt": "Game 24",
+        "link": "games/Coloron.html"
       }
     ]
   }

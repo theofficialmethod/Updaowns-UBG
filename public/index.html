@@ -56,7 +56,6 @@ if ($userIP !== $allowedIP) {
     <link rel="icon" href="/assets/favicon/google.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         // Check if about:blank is enabled and if we're not already in an about:blank page
         if (localStorage.getItem('aboutBlank') === 'true' && window.location.href !== 'about:blank') {
@@ -106,119 +105,89 @@ if ($userIP !== $allowedIP) {
     </div>
     <div id="flash-container"></div>
     <script>
-        const searchBar = document.querySelector('.search-bar');
-        const gameButtons = document.querySelectorAll('.game-button');
-        
-        searchBar.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            
-            gameButtons.forEach(button => {
-                const gameTitle = button.querySelector('.game-title').textContent.toLowerCase();
-                
-                // Show/hide games based on search term
-                if (searchTerm === '' || gameTitle.includes(searchTerm)) {
-                    button.style.display = 'flex';
-                } else {
-                    button.style.display = 'none';
-                }
-            });
-            
-            // Check if no games are visible
-            const visibleGames = Array.from(gameButtons).filter(button => 
-                button.style.display !== 'none'
-            );
-            
-            // Get or create the no-results message
-            let noResults = document.querySelector('.no-results');
-            if (!noResults) {
-                noResults = document.createElement('div');
-                noResults.className = 'no-results';
-                noResults.style.textAlign = 'center';
-                noResults.style.width = '100%';
-                noResults.style.padding = '20px';
-                noResults.style.color = '#9ca3af';
-                noResults.style.gridColumn = '1 / -1';
-                document.querySelector('.game-grid').appendChild(noResults);
-            }
-            
-            // Show/hide no results message
-            if (visibleGames.length === 0) {
-                noResults.textContent = `No games found matching "${searchTerm}"`;
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-            }
-        });
-        
-        // Clear search when clicking the X (clear) button
-        searchBar.addEventListener('search', () => {
-            gameButtons.forEach(button => {
-                button.style.display = 'flex';
-            });
-            const noResults = document.querySelector('.no-results');
-            if (noResults) {
-                noResults.style.display = 'none';
-            }
-        });
-    </script>
-    <script>
-        // Apply saved settings
-        const applySettings = () => {
-            const settings = JSON.parse(localStorage.getItem('siteSettings') || '{}');
-            
-            // Set default title if no settings exist
-            document.title = settings.pageTitle || 'Google';
-            
-            // Set default favicon if no settings exist
-            const faviconPath = settings.cloakPreset ? {
-                'google': 'assets/favicon/google.ico',
-                'drive': 'assets/favicon/drive.ico',
-                'classroom': 'assets/favicon/classroom.ico',
-                'canvas': 'assets/favicon/canvas.ico'
-            }[settings.cloakPreset] : 'assets/favicon/google.ico';
-
-            const links = document.querySelectorAll('link[rel="icon"]');
-            links.forEach(link => link.remove());
-            const newLink = document.createElement('link');
-            newLink.rel = 'icon';
-            newLink.href = faviconPath;
-            document.head.appendChild(newLink);
-        };
-        
-        // Apply settings when page loads
-        document.addEventListener('DOMContentLoaded', applySettings);
-
-        // Count total number of game buttons
-        document.addEventListener('DOMContentLoaded', () => {
-            const gameButtons = document.querySelectorAll('.game-button');
-            document.getElementById('gameCount').textContent = gameButtons.length;
-        });
-
-        // games loading buttons
+        // Fetch games from JSON and populate the game grid
         fetch('games.json') // Replace with the path to your JSON file
-  .then(response => response.json())
-  .then(data => {
-    const gameGrid = document.querySelector('.game-grid');
-    data.games.forEach(game => {
-      const gameButton = document.createElement('a');
-      gameButton.href = game.link;
-      gameButton.className = 'game-button';
+            .then(response => response.json())
+            .then(data => {
+                const gameGrid = document.getElementById('game-grid');
+                data.games.forEach(game => {
+                    const gameButton = document.createElement('a');
+                    gameButton.href = game.link;
+                    gameButton.className = 'game-button';
 
-      const img = document.createElement('img');
-      img.src = game.image;
-      img.alt = game.alt;
-      img.style = 'width: 100%; height: 100%; object-fit: cover;';
+                    const img = document.createElement('img');
+                    img.src = game.image;
+                    img.alt = game.alt;
 
-      const title = document.createElement('div');
-      title.className = 'game-title';
-      title.textContent = game.title;
+                    const title = document.createElement('div');
+                    title.className = 'game-title';
+                    title.textContent = game.title;
 
-      gameButton.appendChild(img);
-      gameButton.appendChild(title);
-      gameGrid.appendChild(gameButton);
-    });
-  })
-  .catch(error => console.error('Error loading games:', error));
+                    gameButton.appendChild(img);
+                    gameButton.appendChild(title);
+                    gameGrid.appendChild(gameButton);
+                });
+
+                // Update game counter
+                document.getElementById('gameCount').textContent = data.games.length;
+
+                // Add search functionality
+                const searchBar = document.querySelector('.search-bar');
+                const gameButtons = document.querySelectorAll('.game-button');
+
+                searchBar.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+
+                    gameButtons.forEach(button => {
+                        const gameTitle = button.querySelector('.game-title').textContent.toLowerCase();
+
+                        // Show/hide games based on search term
+                        if (searchTerm === '' || gameTitle.includes(searchTerm)) {
+                            button.style.display = 'flex';
+                        } else {
+                            button.style.display = 'none';
+                        }
+                    });
+
+                    // Check if no games are visible
+                    const visibleGames = Array.from(gameButtons).filter(button =>
+                        button.style.display !== 'none'
+                    );
+
+                    // Get or create the no-results message
+                    let noResults = document.querySelector('.no-results');
+                    if (!noResults) {
+                        noResults = document.createElement('div');
+                        noResults.className = 'no-results';
+                        noResults.style.textAlign = 'center';
+                        noResults.style.width = '100%';
+                        noResults.style.padding = '20px';
+                        noResults.style.color = '#9ca3af';
+                        noResults.style.gridColumn = '1 / -1';
+                        gameGrid.appendChild(noResults);
+                    }
+
+                    // Show/hide no results message
+                    if (visibleGames.length === 0) {
+                        noResults.textContent = `No games found matching "${searchTerm}"`;
+                        noResults.style.display = 'block';
+                    } else {
+                        noResults.style.display = 'none';
+                    }
+                });
+
+                // Clear search when clicking the X (clear) button
+                searchBar.addEventListener('search', () => {
+                    gameButtons.forEach(button => {
+                        button.style.display = 'flex';
+                    });
+                    const noResults = document.querySelector('.no-results');
+                    if (noResults) {
+                        noResults.style.display = 'none';
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading games:', error));
     </script>
 </body>
 </html>
