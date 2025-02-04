@@ -1,155 +1,166 @@
 {
     "games": [
-      {
-        "title": "Minecraft",
-        "image": "assets/main-page/minecraft.png",
-        "alt": "Game 1",
-        "link": "games/Minecraft.html"
-      },
-      {
-        "title": "Among Us",
-        "image": "assets/main-page/among-us.png",
-        "alt": "Game 2",
-        "link": "games/Among-us.html"
-      },
-      {
-        "title": "Subway Surfers",
-        "image": "assets/main-page/subway-surfers.png",
-        "alt": "Game 3",
-        "link": "games/Subway-Surfers.html"
-      },
-      {
-        "title": "1v1.LOL",
-        "image": "assets/main-page/1v1-lol.png",
-        "alt": "Game 4",
-        "link": "games/1v1-lol.html"
-      },
-      {
-        "title": "Slope",
-        "image": "assets/main-page/slope.png",
-        "alt": "Game 5",
-        "link": "games/Slope.html"
-      },
-      {
-        "title": "Slope 2",
-        "image": "assets/main-page/slope-2.png",
-        "alt": "Game 6",
-        "link": "games/Slope-2.html"
-      },
-      {
-        "title": "Cookie Clicker",
-        "image": "assets/main-page/cookie-clicker.png",
-        "alt": "Game 7",
-        "link": "games/Cookie-Clicker.html"
-      },
-      {
-        "title": "Tower Stack",
-        "image": "assets/main-page/stack.png",
-        "alt": "Game 8",
-        "link": "games/Stack.html"
-      },
-      {
-        "title": "Tetris",
-        "image": "assets/main-page/tetris.png",
-        "alt": "Game 9",
-        "link": "games/Tetris.html"
-      },
-      {
-        "title": "Retro Bowl",
-        "image": "assets/main-page/retro-bowl.png",
-        "alt": "Game 10",
-        "link": "games/Retro-bowl.html"
-      },
-      {
-        "title": "Boxing Random",
-        "image": "assets/main-page/boxing-random.png",
-        "alt": "Game 11",
-        "link": "games/Boxing-random.html"
-      },
-      {
-        "title": "Basket Random",
-        "image": "assets/main-page/basket-random.png",
-        "alt": "Game 12",
-        "link": "games/Basket-random.html"
-      },
-      {
-        "title": "2048",
-        "image": "assets/main-page/2048.png",
-        "alt": "Game 13",
-        "link": "games/2048.html"
-      },
-      {
-        "title": "Drift Hunters",
-        "image": "assets/main-page/drift-hunters.png",
-        "alt": "Game 14",
-        "link": "games/Drift-hunters.html"
-      },
-      {
-        "title": "Geometry Dash",
-        "image": "assets/main-page/geometry-dash.png",
-        "alt": "Game 15",
-        "link": "games/Geometry-dash.html"
-      },
-      {
-        "title": "World Hardest Game",
-        "image": "assets/main-page/world-hardest-game.png",
-        "alt": "Game 16",
-        "link": "games/World-hardest-game.html"
-      },
-      {
-        "title": "Rooftop Snippers",
-        "image": "assets/main-page/rooftop-snippers.png",
-        "alt": "Game 17",
-        "link": "games/Rooftop-snippers.html"
-      },
-      {
-        "title": "Windows 11",
-        "image": "assets/main-page/win11.png",
-        "alt": "Game 18",
-        "link": "games/Win11.html"
-      },
-      {
-        "title": "Fire Boy and Water Girl",
-        "image": "assets/main-page/fireboy-and-watergirl-1.png",
-        "alt": "Game 19",
-        "link": "games/Fire-boy-and-water-girl-FT.html"
-      },
-      {
-        "title": "Chrome Dino",
-        "image": "assets/main-page/chrome-dino.png",
-        "alt": "Game 20",
-        "link": "games/chrome-dino.html"
-      },
-      {
-        "title": "Fappy Bird",
-        "image": "assets/main-page/fappy-bird.png",
-        "alt": "Game 21",
-        "link": "games/Fappy-bird.html"
-      },
-      {
-        "title": "Chroma",
-        "image": "assets/main-page/chroma.png",
-        "alt": "Game 22",
-        "link": "games/Chroma.html"
-      },
-      {
-        "title": "Impossible Quiz",
-        "image": "assets/main-page/impossible-quiz.png",
-        "alt": "Game 23",
-        "link": "games/Impossible-quiz.html"
-      },
-      {
-        "title": "Crazy Car Jump",
-        "image": "assets/main-page/crazy-car-jump.png",
-        "alt": "Game 24",
-        "link": "games/Crazy-car-jump.html"
-      },
-      {
-        "title": "Coloron",
-        "image": "assets/main-page/coloron.png",
-        "alt": "Game 24",
-        "link": "games/Coloron.html"
-      }
+        {
+            "title": "Minecraft",
+            "image": "assets/main-page/minecraft.png",
+            "alt": "Game 1",
+            "link": "games/Minecraft.html"
+        },
+        {
+            "title": "Among Us",
+            "image": "assets/main-page/among-us.png",
+            "alt": "Game 2",
+            "link": "games/Among-us.html"
+        },
+        {
+            "title": "Subway Surfers",
+            "image": "assets/main-page/subway-surfers.png",
+            "alt": "Game 3",
+            "link": "games/Subway-Surfers.html"
+        },
+        {
+            "title": "1v1.LOL",
+            "image": "assets/main-page/1v1-lol.png",
+            "alt": "Game 4",
+            "link": "games/1v1-lol.html"
+        },
+        {
+            "title": "Slope",
+            "image": "assets/main-page/slope.png",
+            "alt": "Game 5",
+            "link": "games/Slope.html"
+        },
+        {
+            "title": "Slope 2",
+            "image": "assets/main-page/slope-2.png",
+            "alt": "Game 6",
+            "link": "games/Slope-2.html"
+        },
+        {
+            "title": "Cookie Clicker",
+            "image": "assets/main-page/cookie-clicker.png",
+            "alt": "Game 7",
+            "link": "games/Cookie-Clicker.html"
+        },
+        {
+            "title": "Tower Stack",
+            "image": "assets/main-page/stack.png",
+            "alt": "Game 8",
+            "link": "games/Stack.html"
+        },
+        {
+            "title": "Tetris",
+            "image": "assets/main-page/tetris.png",
+            "alt": "Game 9",
+            "link": "games/Tetris.html"
+        },
+        {
+            "title": "Retro Bowl",
+            "image": "assets/main-page/retro-bowl.png",
+            "alt": "Game 10",
+            "link": "games/Retro-bowl.html"
+        },
+        {
+            "title": "Boxing Random",
+            "image": "assets/main-page/boxing-random.png",
+            "alt": "Game 11",
+            "link": "games/Boxing-random.html"
+        },
+        {
+            "title": "Basket Random",
+            "image": "assets/main-page/basket-random.png",
+            "alt": "Game 12",
+            "link": "games/Basket-random.html"
+        },
+        {
+            "title": "2048",
+            "image": "assets/main-page/2048.png",
+            "alt": "Game 13",
+            "link": "games/2048.html"
+        },
+        {
+            "title": "Drift Hunters",
+            "image": "assets/main-page/drift-hunters.png",
+            "alt": "Game 14",
+            "link": "games/Drift-hunters.html"
+        },
+        {
+            "title": "Geometry Dash",
+            "image": "assets/main-page/geometry-dash.png",
+            "alt": "Game 15",
+            "link": "games/Geometry-dash.html"
+        },
+        {
+            "title": "World Hardest Game",
+            "image": "assets/main-page/world-hardest-game.png",
+            "alt": "Game 16",
+            "link": "games/World-hardest-game.html"
+        },
+        {
+            "title": "Rooftop Snippers",
+            "image": "assets/main-page/rooftop-snippers.png",
+            "alt": "Game 17",
+            "link": "games/Rooftop-snippers.html"
+        },
+        {
+            "title": "Windows 11",
+            "image": "assets/main-page/win11.png",
+            "alt": "Game 18",
+            "link": "games/Win11.html"
+        },
+        {
+            "title": "Fire Boy and Water Girl",
+            "image": "assets/main-page/fireboy-and-watergirl-1.png",
+            "alt": "Game 19",
+            "link": "games/Fire-boy-and-water-girl-FT.html"
+        },
+        {
+            "title": "Chrome Dino",
+            "image": "assets/main-page/chrome-dino.png",
+            "alt": "Game 20",
+            "link": "games/chrome-dino.html"
+        },
+        {
+            "title": "Fappy Bird",
+            "image": "assets/main-page/fappy-bird.png",
+            "alt": "Game 21",
+            "link": "games/Fappy-bird.html"
+        },
+        {
+            "title": "Chroma",
+            "image": "assets/main-page/chroma.png",
+            "alt": "Game 22",
+            "link": "games/Chroma.html"
+        },
+        {
+            "title": "Impossible Quiz",
+            "image": "assets/main-page/impossible-quiz.png",
+            "alt": "Game 23",
+            "link": "games/Impossible-quiz.html"
+        },
+        {
+            "title": "Crazy Car Jump",
+            "image": "assets/main-page/crazy-car-jump.png",
+            "alt": "Game 24",
+            "link": "games/Crazy-car-jump.html"
+        },
+        {
+            "title": "Coloron",
+            "image": "assets/main-page/coloron.png",
+            "alt": "Game 25",
+            "link": "games/Coloron.html"
+        },
+        {
+            "title": "Polly Track",
+            "image": "assets/main-page/polly-track.png",
+            "alt": "Game 26",
+            "link": "games/Polly.html"
+        },
+        {
+            "title": "Awesome Tanks 2",
+            "image": "assets/main-page/awesome-tanks-2.png",
+            "alt": "Game 27",
+            "link": "games/Tanks.html"
+        }
     ]
-  }
-  
+}
