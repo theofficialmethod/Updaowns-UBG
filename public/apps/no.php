@@ -1,4 +1,33 @@
-<!DOCTYPE html>
+<?php
+session_start();
+
+$USERNAME = "rafa";
+$PASSWORD = "rafa123";
+
+// Check if the user submitted the login form
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($_POST['username'] === $USERNAME && $_POST['password'] === $PASSWORD) {
+        $_SESSION['logged_in'] = true;
+    } else {
+        header("Location: https://updaown.koyeb.app");
+        exit;
+    }
+}
+
+// Redirect to login page if not authenticated
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+?>
+    <form method="post">
+        <label>Username: <input type="text" name="username"></label><br>
+        <label>Password: <input type="password" name="password"></label><br>
+        <input type="submit" value="Login">
+    </form>
+<?php
+    exit;
+}
+
+// If logged in, show the HTML content
+echo '<!DOCTYPE html>
 <html lang="en"><head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSHBZ8D1X7"></script>
@@ -118,7 +147,7 @@
 <link rel="icon" href="../assets/favicon/drive.ico"></head>
 <body>
     <nav class="navbar" id="navbar">
-        <a href="../index.html" class="nav-logo">Updaown's UBL</a>
+        <a href="../index.html" class="nav-logo">Updaowns UBL</a>
         <div class="nav-links">
             <a href="../index.html" class="nav-link">Games</a>
             <a href="../apps.html" class="nav-link">Apps</a>
@@ -126,7 +155,7 @@
         </div>
     </nav>
     <div class="game-container">
-        <iframe src="../apps/iframe/no.html" class="game-frame" id="gameFrame" allowfullscreen=""></iframe>
+        <iframe src="iframe/no.html" class="game-frame" id="gameFrame" allowfullscreen=""></iframe>
         <div class="game-controls" id="gameControls">
             <button class="control-button" id="fullscreenButton">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -227,4 +256,5 @@
 
 
 </body>
-</html>
+</html>';
+?>
