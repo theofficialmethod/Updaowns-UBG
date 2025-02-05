@@ -118,24 +118,28 @@ if ($userIP !== $allowedIP) {
         fetch('games.json') // Replace with the path to your JSON file
             .then(response => response.json())
             .then(data => {
-                const gameGrid = document.getElementById('game-grid');
-                data.games.forEach(game => {
-                    const gameButton = document.createElement('a');
-                    gameButton.href = game.link;
-                    gameButton.className = 'game-button';
+            const gameGrid = document.getElementById('game-grid');
+            data.games.forEach(game => {
+                const gameButton = document.createElement('a');
+                gameButton.href = game.link;
+                gameButton.className = 'game-button';
 
-                    const img = document.createElement('img');
-                    img.src = game.image;
-                    img.alt = game.alt;
+                if (game.openInNewTab) {
+                gameButton.target = '_blank';
+                }
 
-                    const title = document.createElement('div');
-                    title.className = 'game-title';
-                    title.textContent = game.title;
+                const img = document.createElement('img');
+                img.src = game.image;
+                img.alt = game.alt;
 
-                    gameButton.appendChild(img);
-                    gameButton.appendChild(title);
-                    gameGrid.appendChild(gameButton);
-                });
+                const title = document.createElement('div');
+                title.className = 'game-title';
+                title.textContent = game.title;
+
+                gameButton.appendChild(img);
+                gameButton.appendChild(title);
+                gameGrid.appendChild(gameButton);
+            });
 
                 // Update game counter
                 document.getElementById('gameCount').textContent = data.games.length;
