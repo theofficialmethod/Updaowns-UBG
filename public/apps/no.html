@@ -1,33 +1,4 @@
-<?php
-session_start();
-
-$USERNAME = "rafa";
-$PASSWORD = "rafa123";
-
-// Check if the user submitted the login form
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if ($_POST['username'] === $USERNAME && $_POST['password'] === $PASSWORD) {
-        $_SESSION['logged_in'] = true;
-    } else {
-        header("Location: https://updaown.koyeb.app");
-        exit;
-    }
-}
-
-// Redirect to login page if not authenticated
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-?>
-    <form method="post">
-        <label>Username: <input type="text" name="username"></label><br>
-        <label>Password: <input type="password" name="password"></label><br>
-        <input type="submit" value="Login">
-    </form>
-<?php
-    exit;
-}
-
-// If logged in, show the HTML content
-echo '<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"><head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSHBZ8D1X7"></script>
@@ -256,5 +227,4 @@ echo '<!DOCTYPE html>
 
 
 </body>
-</html>';
-?>
+</html>
