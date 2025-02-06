@@ -77,6 +77,10 @@ app.get('/proxy', async (req, res) => {
 
           // Handle dynamic navigation (e.g., JavaScript-based links)
           function navigateTo(url) {
+            // Ensure relative URLs are handled correctly
+            if (!url.startsWith('http')) {
+              url = new URL(url, window.location.origin).href;
+            }
             window.history.pushState({}, '', url);
             fetch(url)
               .then(response => response.text())
