@@ -30,8 +30,29 @@ app.get('/proxy', async (req, res) => {
       const html = await proxyResponse.text();
       const $ = cheerio.load(html);
 
-      // Rewrite all URLs in the HTML to go through the proxy
-      $('a[href], link[href], script[src], img[src], form[action], iframe[src]').each((_, element) => {
+      // Rewrite URLs in the <head> section
+      $('head').find('link[href], meta[content], script[src]').each((_, element) => {
+        const tagName = $(element).prop('tagName').toLowerCase();
+        if (tagName === 'link') {
+          const href = $(element).attr('href');
+          if (href) {
+            $(element).attr('href', rewriteUrl(href, targetUrl));
+          }
+        } else if (tagName === 'meta') {
+          const content = $(element).attr('content');
+          if (content && (content.startsWith('http://') || content.startsWith('https://'))) {
+            $(element).attr('content', rewriteUrl(content, targetUrl));
+          }
+        } else if (tagName === 'script') {
+          const src = $(element).attr('src');
+          if (src) {
+            $(element).attr('src', rewriteUrl(src, targetUrl));
+          }
+        }
+      });
+
+      // Rewrite URLs in the <body> section
+      $('body').find('a[href], link[href], script[src], img[src], form[action], iframe[src], source[src], video[src], audio[src], track[src]').each((_, element) => {
         const attributes = ['href', 'src', 'action'];
         attributes.forEach(attr => {
           const value = $(element).attr(attr);
@@ -44,6 +65,81 @@ app.get('/proxy', async (req, res) => {
       // Inject JavaScript to handle link clicks, form submissions, and dynamic navigation
       $('body').append(`
         <script>
+          // Function to rewrite URLs to go through the proxy
+          function rewriteUrl(url) {
+            if (!url.startsWith('http')) {
+              // Convert relative URLs to absolute URLs
+              url = new URL(url, window.location.origin).href;
+            }
+            return '/proxy?url=' + encodeURIComponent(url);
+          }
+
+          // Function to rewrite URLs in the DOM
+          function rewriteUrlsInDom() {
+            // Rewrite URLs in all relevant elements
+            document.querySelectorAll('a[href], link[href], script[src], img[src], form[action], iframe[src], source[src], video[src], audio[src], track[src]').forEach(element => {
+              const attributes = ['href', 'src', 'action'];
+              attributes.forEach(attr => {
+                const value = element.getAttribute(attr);
+                if (value && (value.startsWith('http://') || value.startsWith('https://'))) {
+                  element.setAttribute(attr, rewriteUrl(value));
+                }
+              });
+            });
+
+            // Rewrite URLs in inline styles
+            document.querySelectorAll('[style]').forEach(element => {
+              const style = element.getAttribute('style');
+              const rewrittenStyle = style.replace(/(url\\()(['"]?)(https?:\/\/[^'"\\)]+)\\2\\)/g, (match, prefix, quote, url) => {
+                return \`\${prefix}\${quote}\${rewriteUrl(url)}\${quote})\`;
+              });
+              element.setAttribute('style', rewrittenStyle);
+            });
+
+            // Rewrite URLs in JavaScript code
+            document.querySelectorAll('script').forEach(script => {
+              if (!script.src && script.textContent) {
+                try {
+                  // Attempt to parse the script content as JSON
+                  const jsonData = JSON.parse(script.textContent);
+                  const rewrittenJson = rewriteUrlsInJson(jsonData);
+                  script.textContent = JSON.stringify(rewrittenJson);
+                } catch (error) {
+                  // If it's not JSON, treat it as regular JavaScript
+                  const rewrittenScript = script.textContent.replace(/(["'])(https?:\/\/[^"']+)\\1/g, (match, quote, url) => {
+                    return \`\${quote}\${rewriteUrl(url)}\${quote}\`;
+                  });
+                  script.textContent = rewrittenScript;
+                }
+              }
+            });
+          }
+
+          // Function to rewrite URLs in JSON data
+          function rewriteUrlsInJson(data) {
+            if (typeof data === 'string') {
+              // Rewrite URLs in strings
+              if (data.startsWith('http://') || data.startsWith('https://')) {
+                return rewriteUrl(data);
+              }
+              return data;
+            } else if (Array.isArray(data)) {
+              // Traverse arrays
+              return data.map(item => rewriteUrlsInJson(item));
+            } else if (typeof data === 'object' && data !== null) {
+              // Traverse objects
+              const result = {};
+              for (const key in data) {
+                result[key] = rewriteUrlsInJson(data[key]);
+              }
+              return result;
+            }
+            return data;
+          }
+
+          // Rewrite URLs after the page has loaded
+          document.addEventListener('DOMContentLoaded', rewriteUrlsInDom);
+
           // Intercept all link clicks
           document.addEventListener('click', function(event) {
             const link = event.target.closest('a');
@@ -71,13 +167,13 @@ app.get('/proxy', async (req, res) => {
                 .then(response => response.text())
                 .then(html => {
                   document.documentElement.innerHTML = html;
+                  rewriteUrlsInDom(); // Rewrite URLs in the new content
                 });
             }
           });
 
           // Handle dynamic navigation (e.g., JavaScript-based links)
           function navigateTo(url) {
-            // Ensure relative URLs are handled correctly
             if (!url.startsWith('http')) {
               url = new URL(url, window.location.origin).href;
             }
@@ -86,6 +182,7 @@ app.get('/proxy', async (req, res) => {
               .then(response => response.text())
               .then(html => {
                 document.documentElement.innerHTML = html;
+                rewriteUrlsInDom(); // Rewrite URLs in the new content
               });
           }
 
@@ -95,21 +192,9 @@ app.get('/proxy', async (req, res) => {
               .then(response => response.text())
               .then(html => {
                 document.documentElement.innerHTML = html;
+                rewriteUrlsInDom(); // Rewrite URLs in the new content
               });
           });
-
-          // Reattach event listeners after dynamic content updates
-          function reattachListeners() {
-            document.querySelectorAll('a').forEach(link => {
-              link.addEventListener('click', function(event) {
-                event.preventDefault();
-                navigateTo(link.getAttribute('href'));
-              });
-            });
-          }
-
-          // Initial attachment of event listeners
-          reattachListeners();
         </script>
       `);
 
