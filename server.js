@@ -6,8 +6,13 @@ const cheerio = require('cheerio');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Serve static files from 'public' directory
+// Basic middleware
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Rest of your proxy code remains the same...
+// [Keep all your existing proxy endpoint code here]
 
 // Proxy endpoint
 app.get('/proxy', async (req, res) => {
@@ -19,8 +24,13 @@ app.get('/proxy', async (req, res) => {
   }
 
   try {
-    // Fetch the target URL
-    const proxyResponse = await fetch(targetUrl);
+    // Fetch the target URL with custom headers
+    const proxyResponse = await fetch(targetUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': targetUrl,
+      },
+    });
 
     // Get the content type
     const contentType = proxyResponse.headers.get('content-type') || '';
